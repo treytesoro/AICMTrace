@@ -30,4 +30,4 @@ jobs:
                 tag_name: v1.0.1
                 name: 'AICMTrace v1.0.1'
                 files: |
-                  dist-electron/Deployment Manager Setup 1.0.1.exe
+                  'dist-electron/AICMTrace Setup 1.0.1.exe'
