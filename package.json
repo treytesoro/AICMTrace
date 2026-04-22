@@ -60,7 +60,8 @@
       "oneClick": true,
       "perMachine": false
     },
-    "asar": false
+    "asar": false,
+    "publish": null
   },
   "dependencies": {
     "chokidar": "^3.6.0",
