@@ -1,0 +1,33 @@
+---
+name: Build AICMTrace
+
+on:
+    workflow_dispatch:
+
+env:
+    GH_TOKEN: ${{ github.token }}
+jobs:
+    build:
+        runs-on: win-runner-vm
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: '24'
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Build AICMTrace
+              run: npm run build:electron
+
+            - name: Create Gitea Release
+              uses: akkuman/gitea-release-action@v1
+              with:
+                tag_name: v1.0.1
+                name: 'AICMTrace v1.0.1'
+                files: |
+                  dist-electron/Deployment Manager Setup 1.0.1.exe

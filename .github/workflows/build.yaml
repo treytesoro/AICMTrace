@@ -1,0 +1,33 @@
+---
+name: Build AICMTrace
+
+on:
+    workflow_dispatch:
+
+env:
+    GH_TOKEN: ${{ github.token }}
+jobs:
+    build:
+        runs-on: windows-latest
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v2
+
+            - name: Set up Node.js
+              uses: actions/setup-node@v4
+              with:
+                node-version: '24'
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Build AICMTrace
+              run: npm run build:electron
+
+            - name: Create release
+              uses: softprops/action-gh-release@v1
+              with:
+                files: 'dist-electron/AICMTrace Setup 1.0.1.exe'
+                tag_name: 'v1.0.1'
+                name: 'AICMTrace v1.0.1'
+        
